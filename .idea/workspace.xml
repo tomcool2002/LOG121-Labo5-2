@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f4aa3ea5-e198-4da4-98b2-46bb8f900f69" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo4/TranslationView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo4/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo4/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo4/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo4/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo4/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo4/ImageModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo4/Observer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo4/Observer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo4/Perspective.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo4/Perspective.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo4/ThumbnailView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo4/ThumbnailView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo4/TranslationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo4/TranslationView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo4/ZoomView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo4/ZoomView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

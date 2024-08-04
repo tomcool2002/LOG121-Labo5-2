@@ -2,7 +2,7 @@ package com.example.demo4;
 
 import java.util.ArrayList;
 
-public class Image implements ObservableImage{
+public class ImageModel implements ObservableImage{
 
     String imgUrl;
     ArrayList<Observer> list = new ArrayList<>();

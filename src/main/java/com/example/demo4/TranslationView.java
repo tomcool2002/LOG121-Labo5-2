@@ -16,7 +16,7 @@ public class TranslationView implements Observer{
     }
 
     @Override
-    public void update(int x, int y, int zoom) {
+    public void update(int x, int y, double zoom) {
         this.x=x;
         this.y=y;
         //trouver comment faire une translation sur l'image

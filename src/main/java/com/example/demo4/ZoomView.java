@@ -7,15 +7,16 @@ import javafx.scene.image.ImageView;
 public class ZoomView implements Observer{
 
     private String imgUrl = "logo.png";
-    private int zoom=0;
+    private double zoom=1.0;
     private ImageView Iv;
 
     public ZoomView(){
         Iv = new ImageView(new Image(imgUrl,300,300,false,false));
     }
     @Override
-    public void update(int x, int y, int zoom) {
+    public void update(int x, int y, double zoom) {
         this.zoom=zoom;
+        Iv.setFitWidth(300 * zoom);
         //trouver comment appliquer un zoom sur une image
     }
 

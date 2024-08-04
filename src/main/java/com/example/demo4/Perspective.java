@@ -6,7 +6,7 @@ public class Perspective implements ObservablePerspective{
 
     int x;
     int y;
-    int zoom;
+    double zoom;
     ArrayList<Observer> list = new ArrayList<>();
     @Override
     public void addObserver(Observer obs) {
@@ -17,7 +17,13 @@ public class Perspective implements ObservablePerspective{
     public void removeObserver(Observer obs) {
         list.remove(obs);
     }
-
+    public double getZoom(){
+        return zoom;
+    }
+    public void setZoom(double zoom){
+        this.zoom = zoom;
+        notifyObserver();
+    }
     @Override
     public void notifyObserver() {
         for (Observer obs:list) {

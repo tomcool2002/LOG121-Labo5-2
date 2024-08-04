@@ -21,9 +21,24 @@ public class HelloApplication extends Application {
     public void start(Stage primaryStage) {
 
         Image image = new Image("logo.png",300,300,false,false);
-        ThumbnailView Tv = new ThumbnailView();
+
+
+
+        Perspective pers = new Perspective();//les 2 modeles
+        ImageModel img = new ImageModel();
+
+        Controller cont = new Controller(img,pers);// le controlleur
+
+        ThumbnailView Tv = new ThumbnailView();// les 3 vues
         ZoomView Zv = new ZoomView();
         TranslationView Tv2 = new TranslationView();
+
+        img.addObserver(Tv);//abonnement
+        img.addObserver(Zv);
+        img.addObserver(Tv2);
+
+        pers.addObserver(Zv);
+        pers.addObserver(Tv2);
 
         ImageView iv1 = Tv.getView();
         ImageView iv2 = Zv.getView();
@@ -35,10 +50,10 @@ public class HelloApplication extends Application {
             public void handle(ScrollEvent scrollEvent) {
 
                 if(scrollEvent.getDeltaY() > 0){ // zoom in
-                    iv2.setFitWidth(image.getWidth() * 2.0);
+                    cont.ZoomIn();
                 }
                 if(scrollEvent.getDeltaY() < 0){ // zoom out
-                    iv2.setFitWidth(image.getWidth() * 0.5);
+                    cont.ZoomOut();
                 }
             }
         });

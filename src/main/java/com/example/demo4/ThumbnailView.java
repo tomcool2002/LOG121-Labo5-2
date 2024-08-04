@@ -14,7 +14,7 @@ public class ThumbnailView implements Observer{
     }
 
     @Override
-    public void update(int x, int y, int zoom) {
+    public void update(int x, int y, double zoom) {
         //ici fait rien avec cela car cette vue n'update pas la perspective
     }
 
