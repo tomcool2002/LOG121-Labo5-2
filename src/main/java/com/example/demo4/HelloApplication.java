@@ -20,20 +20,18 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        Image image = new Image("logo.png",300,300,false,false);
+        Image image = new Image("logo.png", 300, 300, false, false);
 
-
-
-        Perspective pers = new Perspective();//les 2 modeles
+        Perspective pers = new Perspective();// les 2 modeles
         ImageModel img = new ImageModel();
 
-        Controller cont = new Controller(img,pers);// le controlleur
+        Controller cont = new Controller(img, pers);// le controlleur
 
         ThumbnailView Tv = new ThumbnailView();// les 3 vues
         ZoomView Zv = new ZoomView();
         TranslationView Tv2 = new TranslationView();
 
-        img.addObserver(Tv);//abonnement
+        img.addObserver(Tv);// abonnement
         img.addObserver(Zv);
         img.addObserver(Tv2);
 
@@ -49,10 +47,10 @@ public class HelloApplication extends Application {
             @Override
             public void handle(ScrollEvent scrollEvent) {
 
-                if(scrollEvent.getDeltaY() > 0){ // zoom in
+                if (scrollEvent.getDeltaY() > 0) { // zoom in
                     cont.ZoomIn();
                 }
-                if(scrollEvent.getDeltaY() < 0){ // zoom out
+                if (scrollEvent.getDeltaY() < 0) { // zoom out
                     cont.ZoomOut();
                 }
             }
@@ -86,31 +84,12 @@ public class HelloApplication extends Application {
         // add menu to menubar
         mb.getMenus().add(m);
 
-        //GridPane grid = new GridPane();
-        //grid.setHgap(4);
-        //grid.setVgap(4);
-        //grid.setPadding(new Insets(0, 10, 0, 10));
-
-        // create StackPane
-        //StackPane sPane1 = new StackPane();
-        //StackPane sPane2 = new StackPane();
-        //StackPane sPane3 = new StackPane();
-
-        // add iv (image)
-        //sPane1.getChildren().add(iv1);
-        //sPane2.getChildren().add(iv2);
-        //sPane3.getChildren().add(iv3);
-
-        //grid.add(sPane1, 1, 0);
-        //grid.add(sPane2, 2, 0);
-        //grid.add(sPane3, 3, 0);
-
         // create a VBox
-        //VBox vb = new VBox();
-        //vb.getChildren().addAll(mb, grid);
+        VBox vb = new VBox();
+        vb.getChildren().addAll(mb, root);
 
         // create a scene
-        Scene spScene = new Scene(root);
+        Scene spScene = new Scene(vb);
         primaryStage.setScene(spScene);
         primaryStage.show();
     }
