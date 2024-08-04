@@ -1,3 +1,4 @@
+//Kenza 
 package com.example.demo4;
 
 import javafx.application.Application;
@@ -13,7 +14,6 @@ import javafx.scene.layout.StackPane;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-
 public class HelloApplication extends Application {
 
     @Override
@@ -28,7 +28,7 @@ public class HelloApplication extends Application {
             }
         });
         Image image = new Image("logo.png");
-        
+
         ImageView iv = new ImageView(image);
         StackPane root = new StackPane();
         root.getChildren().add(btn);
@@ -40,6 +40,7 @@ public class HelloApplication extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
     public static void main(String[] args) {
         launch(args);
     }
