@@ -16,8 +16,7 @@ public class ZoomView implements Observer{
     @Override
     public void update(int x, int y, int zoom) {
         this.zoom=zoom;
-        Rectangle2D viewportReact = new Rectangle2D(0+(zoom/2),0+(zoom/2),300-zoom,300-zoom);
-        Iv.setViewport(viewportReact);
+        //trouver comment appliquer un zoom sur une image
     }
 
     @Override

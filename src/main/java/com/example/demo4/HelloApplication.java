@@ -3,43 +3,50 @@ package com.example.demo4;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 public class HelloApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
 
-
+        Image image = new Image("logo.png",300,300,false,false);
         ThumbnailView Tv = new ThumbnailView();
         ZoomView Zv = new ZoomView();
-        Image image = new Image("logo.png",300,300,false,false);
+        TranslationView Tv2 = new TranslationView();
 
         ImageView iv1 = Tv.getView();
         ImageView iv2 = Zv.getView();
-        ImageView iv3 = new ImageView(image);
+        ImageView iv3 = Tv2.getView();
 
-        iv2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        iv2.setPreserveRatio(true);
+        iv2.setOnScroll(new EventHandler<ScrollEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) {
-                Zv.update(0,0,50);
-                Zv.update("logo2.png");
-                System.out.println("test");
+            public void handle(ScrollEvent scrollEvent) {
+
+                if(scrollEvent.getDeltaY() > 0){ // zoom in
+                    iv2.setFitWidth(image.getWidth() * 2.0);
+                }
+                if(scrollEvent.getDeltaY() < 0){ // zoom out
+                    iv2.setFitWidth(image.getWidth() * 0.5);
+                }
             }
         });
+
+        var root = new BorderPane();
+        root.setLeft(iv1);
+        root.setCenter(iv2);
+        root.setRight(iv3);
 
         // set title for the stage
         primaryStage.setTitle("Application Edit Image");
@@ -64,31 +71,31 @@ public class HelloApplication extends Application {
         // add menu to menubar
         mb.getMenus().add(m);
 
-        GridPane grid = new GridPane();
-        grid.setHgap(4);
-        grid.setVgap(4);
-        grid.setPadding(new Insets(0, 10, 0, 10));
+        //GridPane grid = new GridPane();
+        //grid.setHgap(4);
+        //grid.setVgap(4);
+        //grid.setPadding(new Insets(0, 10, 0, 10));
 
         // create StackPane
-        StackPane sPane1 = new StackPane();
-        StackPane sPane2 = new StackPane();
-        StackPane sPane3 = new StackPane();
+        //StackPane sPane1 = new StackPane();
+        //StackPane sPane2 = new StackPane();
+        //StackPane sPane3 = new StackPane();
 
         // add iv (image)
-        sPane1.getChildren().add(iv1);
-        sPane2.getChildren().add(iv2);
-        sPane3.getChildren().add(iv3);
+        //sPane1.getChildren().add(iv1);
+        //sPane2.getChildren().add(iv2);
+        //sPane3.getChildren().add(iv3);
 
-        grid.add(sPane1, 1, 0);
-        grid.add(sPane2, 2, 0);
-        grid.add(sPane3, 3, 0);
+        //grid.add(sPane1, 1, 0);
+        //grid.add(sPane2, 2, 0);
+        //grid.add(sPane3, 3, 0);
 
         // create a VBox
-        VBox vb = new VBox();
-        vb.getChildren().addAll(mb, grid);
+        //VBox vb = new VBox();
+        //vb.getChildren().addAll(mb, grid);
 
         // create a scene
-        Scene spScene = new Scene(vb, 800, 400);
+        Scene spScene = new Scene(root);
         primaryStage.setScene(spScene);
         primaryStage.show();
     }
