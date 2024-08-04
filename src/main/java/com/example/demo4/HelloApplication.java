@@ -24,16 +24,6 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-
         Image image = new Image("logo.png");
 
         ImageView iv1 = new ImageView(image);
@@ -46,7 +36,6 @@ public class HelloApplication extends Application {
         iv3.setFitHeight(300);
         iv3.setFitWidth(300);
         StackPane root = new StackPane();
-        root.getChildren().add(btn);
         root.getChildren().add(iv1);
 
         Scene scene = new Scene(root, 500, 450);
