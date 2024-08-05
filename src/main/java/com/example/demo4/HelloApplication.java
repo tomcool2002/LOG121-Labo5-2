@@ -1,6 +1,10 @@
 package com.example.demo4;
 
+import java.io.File;
+
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
@@ -12,6 +16,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 
@@ -79,6 +84,32 @@ public class HelloApplication extends Application {
         MenuItem m2 = new MenuItem("Sauvegarder");
         MenuItem m3 = new MenuItem("Choisir XML");
         MenuItem m4 = new MenuItem("Quitter");
+        System.out.println("mouse click detected! ");
+
+        m1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent mouseEvent) {
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Open Resource File");
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("All Images", "*.*"),
+                        new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                        new FileChooser.ExtensionFilter("PNG", "*.png"));
+                File file = fileChooser.showOpenDialog(primaryStage);
+                if (file != null) {
+                    Tv.update(file.getAbsolutePath());
+                    Zv.update(file.getAbsolutePath());
+                    Tv2.update(file.getAbsolutePath());
+                }
+            }
+        });
+
+        m4.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent mouseEvent) {
+                Platform.exit();
+            }
+        });
         // add menu items to menu
         m.getItems().add(m1);
         m.getItems().add(m2);
