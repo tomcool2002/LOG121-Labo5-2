@@ -3,33 +3,32 @@ package com.example.demo4;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class TranslationView implements Observer{
+public class TranslationView implements Observer {
 
     private String imgUrl = "logo.png";
-    private ImageView Iv;
+    private ImageView imageView;
     private int x;
     private int y;
 
-    public TranslationView(){
-        Image image = new Image(imgUrl,300,300,false,false);
-        Iv = new ImageView(image);
+    public TranslationView() {
+        Image image = new Image(imgUrl, 300, 300, false, false);
+        imageView = new ImageView(image);
     }
 
     @Override
-    public void update(int x, int y, double zoom) {
-        this.x=x;
-        this.y=y;
-        //trouver comment faire une translation sur l'image
+    public void update(Double x, Double y, double zoom) {
+        imageView.setTranslateX(x);
+
+        imageView.setTranslateY(y);
     }
 
     @Override
     public void update(String imgUrl) {
-        this.imgUrl=imgUrl;
-        Iv.setImage(new Image(imgUrl,300,300,false,false));
+        this.imgUrl = imgUrl;
+        imageView.setImage(new Image(imgUrl, 300, 300, false, false));
     }
 
-    public ImageView getView(){
-        return Iv;
+    public ImageView getView() {
+        return imageView;
     }
-
 }

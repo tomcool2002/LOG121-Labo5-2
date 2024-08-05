@@ -4,28 +4,30 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class ZoomView implements Observer{
+public class ZoomView implements Observer {
 
     private String imgUrl = "logo.png";
-    private double zoom=1.0;
+    private double zoom = 1.0;
     private ImageView Iv;
 
-    public ZoomView(){
-        Iv = new ImageView(new Image(imgUrl,300,300,false,false));
+    public ZoomView() {
+        Iv = new ImageView(new Image(imgUrl, 300, 300, false, false));
     }
+
     @Override
-    public void update(int x, int y, double zoom) {
-        this.zoom=zoom;
+    public void update(Double x, Double y, double zoom) {
+        this.zoom = zoom;
         Iv.setFitWidth(300 * zoom);
-        //trouver comment appliquer un zoom sur une image
+        // trouver comment appliquer un zoom sur une image
     }
 
     @Override
     public void update(String imgUrl) {
         this.imgUrl = imgUrl; // change l'image
-        Iv.setImage(new Image(imgUrl,300,300,false,false));
+        Iv.setImage(new Image(imgUrl, 300, 300, false, false));
     }
-    public ImageView getView(){
+
+    public ImageView getView() {
         return Iv;
     }
 }

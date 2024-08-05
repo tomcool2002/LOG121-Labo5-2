@@ -56,6 +56,13 @@ public class HelloApplication extends Application {
             }
         });
 
+        iv3.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent scrollEvent) {
+                cont.Translation(scrollEvent.getSceneX() / 7, scrollEvent.getSceneY() / 7);
+            }
+        });
+
         var root = new BorderPane();
         root.setLeft(iv1);
         root.setCenter(iv2);
