@@ -27,4 +27,8 @@ public class ThumbnailView implements Observer {
     public ImageView getView() {
         return Iv;
     }
+
+    public String getImgUml() {
+        return imgUrl;
+    }
 }

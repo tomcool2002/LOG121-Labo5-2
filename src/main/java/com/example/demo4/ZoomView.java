@@ -30,4 +30,8 @@ public class ZoomView implements Observer {
     public ImageView getView() {
         return Iv;
     }
+
+    public double GetZoom() {
+        return zoom;
+    }
 }

@@ -7,8 +7,8 @@ public class TranslationView implements Observer {
 
     private String imgUrl = "logo.png";
     private ImageView imageView;
-    private int x;
-    private int y;
+    private Double x;
+    private Double y;
 
     public TranslationView() {
         Image image = new Image(imgUrl, 300, 300, false, false);
@@ -17,6 +17,8 @@ public class TranslationView implements Observer {
 
     @Override
     public void update(Double x, Double y, double zoom) {
+        this.x = x;
+        this.y = y;
         imageView.setTranslateX(x);
 
         imageView.setTranslateY(y);
@@ -30,5 +32,13 @@ public class TranslationView implements Observer {
 
     public ImageView getView() {
         return imageView;
+    }
+
+    public Double getX() {
+        return x;
+    }
+
+    public Double getY() {
+        return y;
     }
 }

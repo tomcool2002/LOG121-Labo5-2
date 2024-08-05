@@ -1,6 +1,17 @@
 package com.example.demo4;
 
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamWriter;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import java.io.File;
+import java.io.FileOutputStream;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -19,6 +30,9 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
+import javafx.fxml.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 public class HelloApplication extends Application {
 
@@ -104,6 +118,101 @@ public class HelloApplication extends Application {
             }
         });
 
+        m2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent mouseEvent) {
+                XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newFactory();
+
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream("LOG121-LABO5-2");
+                    XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(fileOutputStream, "UTF-8");
+                    // En-tête du document XML
+                    xmlStreamWriter.writeStartDocument("UTF-8", "1.0");
+
+                    // Element racine
+                    xmlStreamWriter.writeStartElement("fenetres");
+                    xmlStreamWriter.writeAttribute("Path", Tv.getImgUml());
+
+                    xmlStreamWriter.writeStartElement("image");
+
+                    // Attributs de l'image
+                    xmlStreamWriter.writeAttribute("x", String.valueOf(Tv2.getX()));
+                    xmlStreamWriter.writeAttribute("y", String.valueOf(Tv2.getY()));
+                    xmlStreamWriter.writeAttribute("zoom", String.valueOf(Zv.GetZoom()));
+
+                    // Fermeture de l'élément image
+                    xmlStreamWriter.writeEndElement();
+
+                    // Fermeture de l'élément racine
+                    xmlStreamWriter.writeEndElement();
+
+                    // Fin du document XML
+                    xmlStreamWriter.writeEndDocument();
+
+                    System.out.println("Les informations ont été sauvegardées dans le fichier XML avec succès.");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+        m3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent mouseEvent) {
+
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Open Resource File");
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("All Images", "*.*"),
+                        new FileChooser.ExtensionFilter(".xml", "*.xml"));
+                File selectedFile = fileChooser.showOpenDialog(primaryStage);
+
+                try {
+                    // Spécifiez le chemin du fichier XML
+
+                    // Créez un objet File pour représenter le fichier XML
+                    File xmlFile = new File(selectedFile.getAbsolutePath());
+
+                    // Créez un constructeur de documentss
+                    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                    DocumentBuilder builder = factory.newDocumentBuilder();
+
+                    // Chargez le document XML à partir du fichier
+                    Document document = builder.parse(xmlFile);
+
+                    // Obtenez la racine du document
+                    Element root = document.getDocumentElement();
+
+                    String path = root.getAttribute("Path");
+
+                    // Obtenez tous les éléments "image" sous la balise "fenetres"
+                    NodeList imageList = root.getElementsByTagName("image");
+
+                    // Parcourez la liste des éléments "image"
+                    for (int i = 0; i < imageList.getLength(); i++) {
+                        Element imageElement = (Element) imageList.item(i);
+
+                        // Obtenez les attributs x, y, length et width de l'élément image
+                        double x = Double.parseDouble(imageElement.getAttribute("x"));
+                        double y = Double.parseDouble(imageElement.getAttribute("y"));
+                        double zoom = Double.parseDouble(imageElement.getAttribute("zoom"));
+
+                        Tv.update(path);
+                        Zv.update(path);
+                        Zv.update(x, y, zoom);
+                        Tv2.update(path);
+                        Tv2.update(x, y, zoom);
+                    }
+
+                } catch (Exception ez) {
+                    ez.printStackTrace();
+                }
+
+            }
+        });
+
         m4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent mouseEvent) {
@@ -136,4 +245,5 @@ public class HelloApplication extends Application {
         // launch the application
         launch(args);
     }
+
 }
